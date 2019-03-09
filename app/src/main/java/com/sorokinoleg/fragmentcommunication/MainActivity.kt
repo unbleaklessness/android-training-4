@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity(), IMainActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mToolbar = toolbar
-        mToolbarTitle = toolbar_title
+        mToolbar = findViewById(R.id.toolbar)
+        mToolbarTitle = findViewById(R.id.toolbar_title)
 
         init()
     }
@@ -34,13 +34,37 @@ class MainActivity : AppCompatActivity(), IMainActivity {
 
     private fun doFragmentTransaction(fragment: Fragment, tag: String, addToBackStack: Boolean, message: String) {
         val transaction = supportFragmentManager.beginTransaction()
+
+        if (message != "") {
+            val bundle = Bundle()
+            bundle.putString(getString(R.string.intent_message), message)
+            fragment.arguments = bundle
+        }
+
         transaction.replace(R.id.main_container, fragment, tag)
+
         if (addToBackStack) {
             transaction.addToBackStack(tag)
         }
+
         transaction.commit()
     }
+
     override fun setToolbarTitle(title: String) {
         mToolbarTitle?.text = title
+    }
+
+    override fun inflateFragment(fragmentTag: String, message: String) {
+        when (fragmentTag) {
+            getString(R.string.fragment_a) -> doFragmentTransaction(AFragment(), fragmentTag, true, message)
+            getString(R.string.fragment_b) -> doFragmentTransaction(BFragment(), fragmentTag, true, message)
+            getString(R.string.fragment_c) -> doFragmentTransaction(CFragment(), fragmentTag, true, message)
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        mToolbarTitle?.text = getString(R.string.fragment_selector)
     }
 }
