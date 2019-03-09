@@ -15,50 +15,50 @@ class SelectorFragment : Fragment(), View.OnClickListener {
         const val TAG = "SelectorFragment"
     }
 
-    private var mIMainActivity: IMainActivity? = null
+    private var iMainActivity: IMainActivity? = null
 
-    private var mButtonFragmentA: Button? = null
-    private var mButtonFragmentB: Button? = null
-    private var mButtonFragmentC: Button? = null
-    private var mMessage: EditText? = null
+    private var buttonFragmentA: Button? = null
+    private var buttonFragmentB: Button? = null
+    private var buttonFragmentC: Button? = null
+    private var message: EditText? = null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        mIMainActivity = context as? IMainActivity
+        iMainActivity = context as? IMainActivity
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mIMainActivity?.setToolbarTitle(tag.toString())
+        iMainActivity?.setToolbarTitle(getString(R.string.fragment_selector))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_selector, container, false)
 
-        mButtonFragmentA = view.findViewById(R.id.button_fragment_a)
-        mButtonFragmentB = view.findViewById(R.id.button_fragment_b)
-        mButtonFragmentC = view.findViewById(R.id.button_fragment_c)
-        mMessage = view.findViewById(R.id.message)
+        buttonFragmentA = view.findViewById(R.id.button_fragment_a)
+        buttonFragmentB = view.findViewById(R.id.button_fragment_b)
+        buttonFragmentC = view.findViewById(R.id.button_fragment_c)
+        message = view.findViewById(R.id.message)
 
-        mButtonFragmentA?.setOnClickListener(this)
-        mButtonFragmentB?.setOnClickListener(this)
-        mButtonFragmentC?.setOnClickListener(this)
+        buttonFragmentA?.setOnClickListener(this)
+        buttonFragmentB?.setOnClickListener(this)
+        buttonFragmentC?.setOnClickListener(this)
 
         return view
     }
 
     override fun onClick(view: View?) {
-        val message = mMessage?.text?.toString()
+        val message = message?.text.toString()
 
         when (view) {
-            mButtonFragmentA ->
-                mIMainActivity?.inflateFragment(AFragment.TAG, message.toString())
-            mButtonFragmentB ->
-                mIMainActivity?.inflateFragment(BFragment.TAG, message.toString())
-            mButtonFragmentC ->
-                mIMainActivity?.inflateFragment(CFragment.TAG, message.toString())
+            buttonFragmentA ->
+                iMainActivity?.inflateFragment(AFragment.TAG, message)
+            buttonFragmentB ->
+                iMainActivity?.inflateFragment(BFragment.TAG, message)
+            buttonFragmentC ->
+                iMainActivity?.inflateFragment(CFragment.TAG, message)
         }
     }
 }
