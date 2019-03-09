@@ -52,13 +52,21 @@ class SelectorFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         val message = mMessage?.text?.toString()
 
-        when (view?.id) {
-            R.id.button_fragment_a ->
-                mIMainActivity?.inflateFragment(getString(R.string.fragment_a), message.toString())
-            R.id.button_fragment_b ->
-                mIMainActivity?.inflateFragment(getString(R.string.fragment_b), message.toString())
-            R.id.button_fragment_c ->
-                mIMainActivity?.inflateFragment(getString(R.string.fragment_c), message.toString())
+//        when (view?.id) {
+//            R.id.button_fragment_a ->
+//                mIMainActivity?.inflateFragment(AFragment.TAG, message.toString())
+//            R.id.button_fragment_b ->
+//                mIMainActivity?.inflateFragment(BFragment.TAG, message.toString())
+//            R.id.button_fragment_c ->
+//                mIMainActivity?.inflateFragment(CFragment.TAG, message.toString())
+//        }
+        when (view) {
+            mButtonFragmentA ->
+                mIMainActivity?.inflateFragment(AFragment.TAG, message.toString())
+            mButtonFragmentB ->
+                mIMainActivity?.inflateFragment(BFragment.TAG, message.toString())
+            mButtonFragmentC ->
+                mIMainActivity?.inflateFragment(CFragment.TAG, message.toString())
         }
     }
 }

@@ -5,10 +5,5 @@
     <color name="color_accent">#D81B60</color>
 
     <color name="grey">#c3c3c3</color>
-    <color name="blue_1">#66a3ff</color>
-    <color name="blue_2">#0033cc</color>
-    <color name="blue_3">#00c4cc</color>
-    <color name="blue_4">#00aab1</color>
-    <color name="blue_5">#007f85</color>
-    <color name="link_blue">#3d94ff</color>
+    <color name="blue">#66a3ff</color>
 </resources>

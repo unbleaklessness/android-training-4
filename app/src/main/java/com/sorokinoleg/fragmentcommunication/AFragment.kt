@@ -14,30 +14,30 @@ class AFragment : Fragment() {
         const val TAG = "AFragment"
     }
 
-    private var mIMainActivity: IMainActivity? = null
+    private var iMainActivity: IMainActivity? = null
 
-    private var mIncomingMessage: TextView? = null
+    private var incomingMessage: TextView? = null
 
-    private var incomingMessageString: String? = null
+    private var intentMessage: String? = null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        mIMainActivity = context as? IMainActivity
+        iMainActivity = context as? IMainActivity
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mIMainActivity?.setToolbarTitle(tag.toString())
+        iMainActivity?.setToolbarTitle(getString(R.string.fragment_a))
 
-        incomingMessageString = arguments?.getString(getString(R.string.intent_message))
+        intentMessage = arguments?.getString(getString(R.string.intent_message))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_a, container, false)
 
-        mIncomingMessage = view.findViewById(R.id.incoming_message)
+        incomingMessage = view.findViewById(R.id.incoming_message)
 
         setIncomingMessage()
 
@@ -45,8 +45,8 @@ class AFragment : Fragment() {
     }
 
     private fun setIncomingMessage() {
-        incomingMessageString?.let {
-            mIncomingMessage?.text = incomingMessageString
+        intentMessage?.let {
+            incomingMessage?.text = intentMessage
         }
     }
 }

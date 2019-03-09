@@ -28,14 +28,13 @@ class MainActivity : AppCompatActivity(), IMainActivity {
     }
 
     private fun init() {
-        val fragment = SelectorFragment()
-        doFragmentTransaction(fragment, getString(R.string.fragment_selector), false, "")
+        doFragmentTransaction(SelectorFragment(), SelectorFragment.TAG, false, null)
     }
 
-    private fun doFragmentTransaction(fragment: Fragment, tag: String, addToBackStack: Boolean, message: String) {
+    private fun doFragmentTransaction(fragment: Fragment, tag: String, addToBackStack: Boolean, message: String?) {
         val transaction = supportFragmentManager.beginTransaction()
 
-        if (message != "") {
+        message?.let {
             val bundle = Bundle()
             bundle.putString(getString(R.string.intent_message), message)
             fragment.arguments = bundle
@@ -56,9 +55,9 @@ class MainActivity : AppCompatActivity(), IMainActivity {
 
     override fun inflateFragment(fragmentTag: String, message: String) {
         when (fragmentTag) {
-            getString(R.string.fragment_a) -> doFragmentTransaction(AFragment(), fragmentTag, true, message)
-            getString(R.string.fragment_b) -> doFragmentTransaction(BFragment(), fragmentTag, true, message)
-            getString(R.string.fragment_c) -> doFragmentTransaction(CFragment(), fragmentTag, true, message)
+            AFragment.TAG -> doFragmentTransaction(AFragment(), fragmentTag, true, message)
+            BFragment.TAG -> doFragmentTransaction(BFragment(), fragmentTag, true, message)
+            CFragment.TAG -> doFragmentTransaction(CFragment(), fragmentTag, true, message)
         }
     }
 
