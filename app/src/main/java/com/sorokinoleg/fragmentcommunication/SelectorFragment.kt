@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_selector.view.*
 
 class SelectorFragment : Fragment(), View.OnClickListener {
 
@@ -23,6 +21,12 @@ class SelectorFragment : Fragment(), View.OnClickListener {
     private var mButtonFragmentB: Button? = null
     private var mButtonFragmentC: Button? = null
     private var mMessage: EditText? = null
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        mIMainActivity = context as? IMainActivity
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +47,6 @@ class SelectorFragment : Fragment(), View.OnClickListener {
         mButtonFragmentC?.setOnClickListener(this)
 
         return view
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-        mIMainActivity = context as? IMainActivity
     }
 
     override fun onClick(view: View?) {

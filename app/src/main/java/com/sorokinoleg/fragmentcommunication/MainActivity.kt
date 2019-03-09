@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), IMainActivity {
 
     companion object {
-        const val TAG = "MainActivity"
+        const val TAG = "ActivityMain"
     }
 
     private var mToolbar: Toolbar? = null
